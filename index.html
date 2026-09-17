@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FreelanceOS — Invoices, Quotes, Cards & QR Codes for Freelancers</title>
+<meta name="description" content="A free toolkit for freelancers and small businesses: invoice generator, quote calculator, digital business card and QR code generator." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="site-header no-print">
+  <div class="header-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark">FO</span>
+      <span>
+        FreelanceOS
+        <small>Business Toolkit</small>
+      </span>
+    </a>
+
+    <nav class="nav">
+      <a href="#home"    class="nav-link" data-route="home">Dashboard</a>
+      <a href="#invoice" class="nav-link" data-route="invoice">Invoice</a>
+      <a href="#quote"   class="nav-link" data-route="quote">Quote</a>
+      <a href="#card"    class="nav-link" data-route="card">Business Card</a>
+      <a href="#qr"      class="nav-link" data-route="qr">QR Code</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ============================================================
+       VIEW 1 — HOME / DASHBOARD
+       ============================================================ -->
+  <section class="view is-active" id="view-home" data-view="home">
+    <div class="container">
+      <div class="hero">
+        <p class="eyebrow">All-in-one workspace</p>
+        <h1>Everything a freelancer needs.<br />Nothing you don't.</h1>
+        <p>
+          Create professional invoices, price your projects, build a digital business card
+          and generate QR codes — free, private, and running entirely in your browser.
+        </p>
+      </div>
+
+      <div class="tool-grid">
+        <a class="tool-card" href="#invoice">
+          <span class="ico">🧾</span>
+          <h3>Invoice Generator</h3>
+          <p>Add items, apply discounts and tax, then print or save a clean PDF invoice.</p>
+          <span class="tool-card-cta">Open tool →</span>
+        </a>
+
+        <a class="tool-card" href="#quote">
+          <span class="ico">📊</span>
+          <h3>Quote Calculator</h3>
+          <p>Estimate a project price from pages, features, design and delivery speed.</p>
+          <span class="tool-card-cta">Open tool →</span>
+        </a>
+
+        <a class="tool-card" href="#card">
+          <span class="ico">💼</span>
+          <h3>Business Card</h3>
+          <p>Build a shareable digital card with contact buttons, socials and a QR code.</p>
+          <span class="tool-card-cta">Open tool →</span>
+        </a>
+
+        <a class="tool-card" href="#qr">
+          <span class="ico">🔗</span>
+          <h3>QR Code Generator</h3>
+          <p>Turn a link, phone number, email or text into a downloadable QR code.</p>
+          <span class="tool-card-cta">Open tool →</span>
+        </a>
+      </div>
+
+      <div class="info-strip">
+        <div><strong>100% private</strong><span>Nothing leaves your browser</span></div>
+        <div><strong>No signup</strong><span>Open it and start working</span></div>
+        <div><strong>Mobile ready</strong><span>Works on phone and desktop</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VIEW 2 — INVOICE GENERATOR
+       ============================================================ -->
+  <section class="view" id="view-invoice" data-view="invoice">
+    <div class="container">
+      <div class="view-head no-print">
+        <div>
+          <p class="eyebrow">Tool 01</p>
+          <h2>Invoice Generator</h2>
+          <p class="muted">Fill the form — the invoice preview updates live.</p>
+        </div>
+        <div class="view-actions">
+          <button type="button" class="btn btn-ghost btn-sm" id="loadInvoiceBtn">Load draft</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="resetInvoiceBtn">Reset</button>
+        </div>
+      </div>
+
+      <div class="tool-layout">
+
+        <!-- ---------- FORM ---------- -->
+        <form class="panel no-print" id="invoiceForm" autocomplete="off" novalidate>
+
+          <div class="panel-section">
+            <h4>Your business</h4>
+            <div class="form-grid">
+              <div class="field full">
+                <label for="bizName">Business name</label>
+                <input class="input" id="bizName" type="text" placeholder="Pixel Craft Studio" />
+              </div>
+              <div class="field">
+                <label for="bizPhone">Phone</label>
+                <input class="input" id="bizPhone" type="tel" placeholder="+91 98765 43210" />
+              </div>
+              <div class="field">
+                <label for="bizEmail">Email</label>
+                <input class="input" id="bizEmail" type="email" placeholder="hello@studio.com" />
+              </div>
+              <div class="field full">
+                <label for="bizAddress">Address <span class="opt">(optional)</span></label>
+                <input class="input" id="bizAddress" type="text" placeholder="Mumbai, India" />
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h4>Bill to</h4>
+            <div class="form-grid">
+              <div class="field full">
+                <label for="clientName">Customer name</label>
+                <input class="input" id="clientName" type="text" placeholder="Rahul Sharma" />
+              </div>
+              <div class="field">
+                <label for="clientPhone">Customer phone</label>
+                <input class="input" id="clientPhone" type="tel" placeholder="+91 90000 00000" />
+              </div>
+              <div class="field">
+                <label for="clientEmail">Customer email</label>
+                <input class="input" id="clientEmail" type="email" placeholder="rahul@company.com" />
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h4>Invoice details</h4>
+            <div class="form-grid">
+              <div class="field">
+                <label for="invoiceNo">Invoice number</label>
+                <input class="input" id="invoiceNo" type="text" />
+              </div>
+              <div class="field">
+                <label for="currency">Currency</label>
+                <select class="input" id="currency">
+                  <option value="INR">INR — ₹ Indian Rupee</option>
+                  <option value="USD">USD — $ US Dollar</option>
+                  <option value="EUR">EUR — € Euro</option>
+                  <option value="GBP">GBP — £ Pound</option>
+                  <option value="AED">AED — د.إ Dirham</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="invoiceDate">Invoice date</label>
+                <input class="input" id="invoiceDate" type="date" />
+              </div>
+              <div class="field">
+                <label for="dueDate">Due date</label>
+                <input class="input" id="dueDate" type="date" />
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h4>Items</h4>
+            <div class="table-scroll">
+              <table class="items-table">
+                <thead>
+                  <tr>
+                    <th>Description</th>
+                    <th class="col-qty">Qty</th>
+                    <th class="col-price">Price</th>
+                    <th class="col-total">Total</th>
+                    <th class="col-x"></th>
+                  </tr>
+                </thead>
+                <tbody id="itemsBody"></tbody>
+              </table>
+            </div>
+
+            <button type="button" class="btn btn-ghost btn-sm add-row-btn" id="addItemBtn">
+              + Add item
+            </button>
+
+            <div class="form-grid two-col-tight">
+              <div class="field">
+                <label for="discount">Discount (%)</label>
+                <input class="input" id="discount" type="number" min="0" max="100" step="0.5" value="0" />
+              </div>
+              <div class="field">
+                <label for="tax">GST / Tax (%)</label>
+                <input class="input" id="tax" type="number" min="0" max="100" step="0.5" value="18" />
+              </div>
+            </div>
+
+            <div class="totals-box">
+              <div class="totals-row"><span>Subtotal</span><span id="sumSubtotal">—</span></div>
+              <div class="totals-row"><span>Discount</span><span id="sumDiscount">—</span></div>
+              <div class="totals-row"><span>Tax</span><span id="sumTax">—</span></div>
+              <div class="totals-row grand"><span>Grand total</span><span id="sumTotal">—</span></div>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h4>Notes</h4>
+            <div class="field">
+              <textarea class="input" id="notes" rows="3" placeholder="Payment due within 14 days. Thank you for your business!"></textarea>
+            </div>
+          </div>
+
+        </form>
+
+        <!-- ---------- PREVIEW ---------- -->
+        <div class="preview-wrap">
+          <div class="preview-toolbar no-print">
+            <button type="button" class="btn btn-primary" id="printInvoiceBtn">🖨 Print / Save as PDF</button>
+            <button type="button" class="btn btn-ghost" id="saveInvoiceBtn">💾 Save draft</button>
+          </div>
+          <div class="paper" id="invoicePreview"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Hidden template for a new item row -->
+    <template id="itemRowTemplate">
+      <tr class="item-row">
+        <td><input type="text" class="input item-desc" placeholder="Website design" /></td>
+        <td><input type="number" class="input item-qty" value="1" min="0" step="1" /></td>
+        <td><input type="number" class="input item-price" value="0" min="0" step="0.01" /></td>
+        <td class="item-line-total">—</td>
+        <td><button type="button" class="icon-btn remove-item" title="Remove item">✕</button></td>
+      </tr>
+    </template>
+  </section>
+
+  <!-- ============================================================
+       VIEW 3 — QUOTE CALCULATOR  (Version 2)
+       ============================================================ -->
+  <section class="view" id="view-quote" data-view="quote">
+    <div class="container">
+      <div class="view-head no-print">
+        <div>
+          <p class="eyebrow">Tool 02</p>
+          <h2>Quote / Price Calculator</h2>
+          <p class="muted">Pick what the project needs — the estimate builds itself.</p>
+        </div>
+        <div class="view-actions">
+          <button type="button" class="btn btn-ghost btn-sm" id="resetQuoteBtn">Reset</button>
+        </div>
+      </div>
+
+      <div class="tool-layout">
+        <form class="panel no-print" id="quoteForm" autocomplete="off">
+
+          <div class="panel-section">
+            <h4>Client &amp; project</h4>
+            <div class="form-grid">
+              <div class="field">
+                <label for="qFrom">Your name / studio</label>
+                <input class="input" id="qFrom" type="text" placeholder="Pixel Craft Studio" />
+              </div>
+              <div class="field">
+                <label for="qClient">Client name</label>
+                <input class="input" id="qClient" type="text" placeholder="Rahul Sharma" />
+              </div>
+              <div class="field full">
+                <label for="qTitle">Project title</label>
+                <input class="input" id="qTitle" type="text" placeholder="Company website redesign" />
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h4>Project basics</h4>
+            <div class="form-grid">
+              <div class="field">
+                <label for="qType">Website type</label>
+                <select class="input" id="qType"></select>
+              </div>
+              <div class="field">
+                <label for="qPages">Number of pages</label>
+                <input class="input" id="qPages" type="number" min="1" step="1" value="5" />
+              </div>
+              <div class="field">
+                <label for="qDesign">Design complexity</label>
+                <select class="input" id="qDesign"></select>
+              </div>
+              <div class="field">
+                <label for="qSpeed">Delivery time</label>
+                <select class="input" id="qSpeed"></select>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h4>Features</h4>
+            <div class="check-grid" id="featuresBox"></div>
+          </div>
+
+          <div class="panel-section">
+            <h4>Additional services</h4>
+            <div class="check-grid" id="addonsBox"></div>
+          </div>
+
+          <div class="panel-section">
+            <h4>Tax</h4>
+            <div class="field">
+              <label for="qTax">GST / Tax (%)</label>
+              <input class="input" id="qTax" type="number" min="0" max="100" step="0.5" value="18" />
+            </div>
+          </div>
+
+        </form>
+
+        <div class="preview-wrap">
+          <div class="preview-toolbar no-print">
+            <button type="button" class="btn btn-primary" id="printQuoteBtn">🖨 Print / Save as PDF</button>
+          </div>
+          <div class="paper" id="quotePreview"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VIEW 4 — QR CODE GENERATOR  (Version 3)
+       ============================================================ -->
+  <section class="view" id="view-qr" data-view="qr">
+    <div class="container">
+      <div class="view-head no-print">
+        <div>
+          <p class="eyebrow">Tool 04</p>
+          <h2>QR Code Generator</h2>
+          <p class="muted">Turn a link, phone number, email or text into a QR code.</p>
+        </div>
+      </div>
+
+      <div class="tool-layout">
+        <div class="panel no-print">
+          <div class="panel-section">
+            <h4>What should the QR code contain?</h4>
+            <div class="chip-group">
+              <label class="chip"><input type="radio" name="qrType" value="url" checked /><span>Website URL</span></label>
+              <label class="chip"><input type="radio" name="qrType" value="text" /><span>Text</span></label>
+              <label class="chip"><input type="radio" name="qrType" value="phone" /><span>Phone</span></label>
+              <label class="chip"><input type="radio" name="qrType" value="email" /><span>Email</span></label>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h4>Content</h4>
+            <div class="field">
+              <label for="qrData" id="qrDataLabel">Website URL</label>
+              <input class="input" id="qrData" type="text" placeholder="https://example.com" />
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h4>Appearance</h4>
+            <div class="form-grid">
+              <div class="field">
+                <label for="qrSize">Size (pixels)</label>
+                <select class="input" id="qrSize">
+                  <option value="256">256 × 256</option>
+                  <option value="512" selected>512 × 512</option>
+                  <option value="1024">1024 × 1024</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="qrDark">QR colour</label>
+                <input class="input input-color" id="qrDark" type="color" value="#0f172a" />
+              </div>
+              <div class="field">
+                <label for="qrLight">Background</label>
+                <input class="input input-color" id="qrLight" type="color" value="#ffffff" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="preview-wrap">
+          <div class="preview-toolbar no-print">
+            <button type="button" class="btn btn-primary" id="generateQrBtn">Generate QR code</button>
+            <button type="button" class="btn btn-ghost" id="downloadQrBtn" disabled>⬇ Download PNG</button>
+          </div>
+
+          <div class="qr-stage">
+            <div class="qr-frame" id="qrFrame">
+              <canvas id="qrCanvas" width="512" height="512"></canvas>
+              <div class="empty" id="qrEmpty">
+                <strong>No QR code yet</strong>
+                Enter something on the left and press “Generate QR code”.
+              </div>
+            </div>
+            <p class="qr-caption no-print" id="qrCaption"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VIEW 5 — DIGITAL BUSINESS CARD  (Version 4)
+       ============================================================ -->
+  <section class="view" id="view-card" data-view="card">
+    <div class="container">
+      <div class="view-head no-print">
+        <div>
+          <p class="eyebrow">Tool 03</p>
+          <h2>Digital Business Card</h2>
+          <p class="muted">Fill in your details — your card and its QR code update live.</p>
+        </div>
+        <div class="view-actions">
+          <button type="button" class="btn btn-ghost btn-sm" id="resetCardBtn">Reset</button>
+        </div>
+      </div>
+
+      <div class="tool-layout">
+        <form class="panel no-print" id="cardForm" autocomplete="off">
+          <div class="panel-section">
+            <h4>Identity</h4>
+            <div class="form-grid">
+              <div class="field full">
+                <label for="cardName">Full name</label>
+                <input class="input" id="cardName" type="text" placeholder="Ananya Verma" />
+              </div>
+              <div class="field full">
+                <label for="cardProfession">Profession / role</label>
+                <input class="input" id="cardProfession" type="text" placeholder="Freelance Web Developer" />
+              </div>
+              <div class="field full">
+                <label for="cardBio">Short bio</label>
+                <textarea class="input" id="cardBio" rows="3" placeholder="I build fast, clean websites for small businesses."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h4>Contact</h4>
+            <div class="form-grid">
+              <div class="field">
+                <label for="cardPhone">Phone</label>
+                <input class="input" id="cardPhone" type="tel" placeholder="+91 98765 43210" />
+              </div>
+              <div class="field">
+                <label for="cardEmail">Email</label>
+                <input class="input" id="cardEmail" type="email" placeholder="hello@ananya.dev" />
+              </div>
+              <div class="field full">
+                <label for="cardWebsite">Website</label>
+                <input class="input" id="cardWebsite" type="text" placeholder="ananya.dev" />
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h4>Social links</h4>
+            <div class="form-grid">
+              <div class="field">
+                <label for="cardLinkedin">LinkedIn</label>
+                <input class="input" id="cardLinkedin" type="text" placeholder="linkedin.com/in/ananya" />
+              </div>
+              <div class="field">
+                <label for="cardGithub">GitHub</label>
+                <input class="input" id="cardGithub" type="text" placeholder="github.com/ananya" />
+              </div>
+              <div class="field">
+                <label for="cardInstagram">Instagram</label>
+                <input class="input" id="cardInstagram" type="text" placeholder="instagram.com/ananya" />
+              </div>
+              <div class="field">
+                <label for="cardAccent">Card colour</label>
+                <input class="input input-color" id="cardAccent" type="color" value="#4f46e5" />
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="preview-wrap">
+          <div class="preview-toolbar no-print">
+            <button type="button" class="btn btn-primary" id="printCardBtn">🖨 Print card</button>
+            <button type="button" class="btn btn-ghost" id="downloadVcardBtn">⬇ Download contact (.vcf)</button>
+          </div>
+          <div class="card-stage" id="cardPreview"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer no-print">
+  <div class="container footer-inner">
+    <p>© <span id="year"></span> FreelanceOS — built with plain HTML, CSS &amp; JavaScript.</p>
+    <p class="muted">Your data never leaves your browser.</p>
+  </div>
+</footer>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<!-- ============================================================
+     SCRIPTS  (order matters)
+     ============================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/invoice.js"></script>
+<script src="js/quote.js"></script>
+<script src="js/card.js"></script>
+<script src="js/qr.js"></script>
+</body>
+</html>
